@@ -1,4 +1,7 @@
 class PostsController < ApplicationController
+  # Token検証を無効にする場合付ける
+  # protect_from_forgery
+
   def index
     @posts = Post.all.order(id: "DESC")
   end
@@ -8,6 +11,7 @@ class PostsController < ApplicationController
   # end
 
   def create
+    # binding.pry
     post = Post.create(content: params[:content], checked: false)
     # redirect_to action: :index
     render json:{ post: post }
